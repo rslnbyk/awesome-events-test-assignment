@@ -1,16 +1,12 @@
+import { Groups } from 'pages/Groups/Groups';
+import { Teammates } from 'pages/Teammates/Teammates';
+import { Route, Routes } from 'react-router-dom';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Routes>
+      <Route path="/groups" element={<Groups />} />
+      <Route path="/teammates" element={<Teammates />} />
+    </Routes>
   );
 };
