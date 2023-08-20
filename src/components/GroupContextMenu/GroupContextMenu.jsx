@@ -2,9 +2,11 @@ import { useEffect, useRef } from 'react';
 import { ContextButton, ContextDiv, ContextP } from './GroupContextMenu.styled';
 import { useDispatch } from 'react-redux';
 import { deleteGroup } from 'redux/groupsOperations';
+import { useTranslation } from 'react-i18next';
 
 export const GroupContextMenu = ({ group, onClose, setIsEditOpen }) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const newRef = useRef(null);
   const handleOutsideClick = e => {
@@ -32,12 +34,12 @@ export const GroupContextMenu = ({ group, onClose, setIsEditOpen }) => {
 
   return (
     <ContextDiv ref={newRef}>
-      <ContextP>Actions</ContextP>
+      <ContextP>{t('Actions')}</ContextP>
       <ContextButton type="button" onClick={handleEditClick}>
-        Edit
+        {t('Edit')}
       </ContextButton>
       <ContextButton type="button" onClick={handleDeleteClick}>
-        Delete
+        {t('Delete')}
       </ContextButton>
     </ContextDiv>
   );

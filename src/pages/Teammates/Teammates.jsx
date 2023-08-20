@@ -20,8 +20,24 @@ import {
   selectUsersPerPage,
   selectUsersSearchQuery,
 } from 'redux/selectors';
+import { useTranslation } from 'react-i18next';
+import { useLocalStorage } from 'trans/use-localstorage';
+import i18n from 'i18n';
 
 export const Teammates = () => {
+  const { t } = useTranslation();
+  const [language, setLanguage] = useLocalStorage('language', 'en');
+
+  const handleLanguageChange = () => {
+    if (language === 'en') {
+      i18n.changeLanguage('ru');
+      setLanguage('ru');
+    } else if (language === 'ru') {
+      i18n.changeLanguage('en');
+      setLanguage('en');
+    }
+  };
+
   const dispatch = useDispatch();
   const users = useSelector(selectUsers);
   const perPage = useSelector(selectUsersPerPage);
@@ -35,17 +51,16 @@ export const Teammates = () => {
 
   return (
     <Container>
-      <MainHeader>Teammates</MainHeader>
+      <button type="button" onClick={handleLanguageChange}>
+        {t('change to')} {language === 'ru' ? t('english') : t('russian')}
+      </button>
+      <MainHeader>{t('Teammates')}</MainHeader>
       <SectionDescription>
-        &emsp; Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore
-        sed est perspiciatis fuga tempore. Eligendi nulla harum et blanditiis a?
-        Magni dicta, blanditiis voluptate facere hic est iusto ipsum!
-        Perferendis cupiditate, earum labore veritatis nesciunt nostrum
-        repellendus impedit ad unde?
+        {t('Teammates section description')}
       </SectionDescription>
       <SearchContainer>
         <SearchForm isUsers={true} />
-        <AddButton type="button">Add Teammate</AddButton>
+        <AddButton type="button">{t('Add Teammate')}</AddButton>
       </SearchContainer>
       {isLoading ? (
         <p>Loading...</p>

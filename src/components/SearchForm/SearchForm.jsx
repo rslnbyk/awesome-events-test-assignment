@@ -5,8 +5,10 @@ import {
   changeGroupsCurrPage,
   changeGroupsSearchQuery,
 } from 'redux/groupsSlice';
+import { useTranslation } from 'react-i18next';
 
 export const SearchForm = ({ isUsers }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const handleSearchChange = e => {
@@ -24,7 +26,7 @@ export const SearchForm = ({ isUsers }) => {
       <Label>
         <SearchInput
           type="text"
-          placeholder="Search"
+          placeholder={t('Search')}
           onChange={handleSearchChange}
         />
       </Label>

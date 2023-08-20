@@ -92,7 +92,7 @@ export const UserName = styled.p`
 export const AddButton = styled.button`
   margin-left: auto;
   margin-right: 8px;
-  width: 50px;
+  min-width: 50px;
   padding: 3px 5px;
   color: white;
   background-color: ${vars.ACCENT_COLOR};

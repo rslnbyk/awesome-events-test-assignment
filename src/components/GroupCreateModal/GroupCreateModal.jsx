@@ -19,8 +19,10 @@ import { selectAllUsers, selectUsersIsLoading } from 'redux/selectors';
 import { useEffect, useRef, useState } from 'react';
 import { fetchAllUsers, changeUser } from 'redux/usersOperations';
 import { addGroup } from 'redux/groupsOperations';
+import { useTranslation } from 'react-i18next';
 
 export const GroupCreateModal = ({ onClose }) => {
+  const { t } = useTranslation();
   const isUsersLoading = useSelector(selectUsersIsLoading);
   const users = useSelector(selectAllUsers);
   const dispatch = useDispatch();
@@ -46,7 +48,7 @@ export const GroupCreateModal = ({ onClose }) => {
 
   const handleAdd = (e, data) => {
     e.target.style.backgroundColor = '#2EFF51';
-    e.target.textContent = 'Added';
+    e.target.textContent = t('Added');
     setGroupUsers([...groupUsers, data]);
   };
 
@@ -76,18 +78,19 @@ export const GroupCreateModal = ({ onClose }) => {
   return ReactDOM.createPortal(
     <ModalOverlay>
       <ModalDiv ref={newRef}>
-        <H2>Change personal data</H2>
-        <ModalDesc>
-          &emsp; Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Reiciendis, voluptates.
-        </ModalDesc>
+        <H2>{t('Change personal data')}</H2>
+        <ModalDesc>{t('Group description')}</ModalDesc>
         <form onSubmit={handleSubmit}>
           <ModalLabel>
-            Group Name
+            {t('Group Name')}
             <br />
-            <ModalInput name="groupName" type="text" placeholder="Group Name" />
+            <ModalInput
+              name="groupName"
+              type="text"
+              placeholder={t('Group Name')}
+            />
           </ModalLabel>
-          <H2>Add teammates to a group</H2>
+          <H2>{t('Add teammates to a group')}</H2>
           {isUsersLoading ? (
             <p>Loading...</p>
           ) : (
@@ -102,13 +105,13 @@ export const GroupCreateModal = ({ onClose }) => {
                       handleAdd(e, { id: user.id, avatar: user.avatar })
                     }
                   >
-                    Add
+                    {t('Add')}
                   </AddButton>
                 </UserItem>
               ))}
             </UsersList>
           )}
-          <SubmitButton type="submit">Create & Add users</SubmitButton>
+          <SubmitButton type="submit">{t('Create & Add users')}</SubmitButton>
         </form>
       </ModalDiv>
     </ModalOverlay>,

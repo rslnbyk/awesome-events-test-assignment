@@ -11,8 +11,10 @@ import {
 import { useDispatch } from 'react-redux';
 import { changeGroup } from 'redux/groupsOperations';
 import { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const GroupEditModal = ({ group, onClose }) => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
 
   const newRef = useRef(null);
@@ -43,14 +45,11 @@ export const GroupEditModal = ({ group, onClose }) => {
   return ReactDOM.createPortal(
     <ModalOverlay>
       <ModalDiv ref={newRef}>
-        <H2>Modify Group</H2>
-        <ModalDesc>
-          &emsp; Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Reiciendis, voluptates.
-        </ModalDesc>
+        <H2>{t('Modify group')}</H2>
+        <ModalDesc>{group.description}</ModalDesc>
         <form onSubmit={handleSubmit}>
           <ModalLabel>
-            Group Name
+            {t('Group Name')}
             <br />
             <ModalInput
               name="groupName"
@@ -58,7 +57,7 @@ export const GroupEditModal = ({ group, onClose }) => {
               defaultValue={group.name}
             />
           </ModalLabel>
-          <SubmitButton type="submit">Update</SubmitButton>
+          <SubmitButton type="submit">{t('Update')}</SubmitButton>
         </form>
       </ModalDiv>
     </ModalOverlay>,

@@ -26,8 +26,10 @@ import {
 import { useDispatch } from 'react-redux';
 import { changeUser } from 'redux/usersOperations';
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const UserModal = ({ onClose, data }) => {
+  const { t } = useTranslation();
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 1280;
 
@@ -75,20 +77,26 @@ export const UserModal = ({ onClose, data }) => {
   return ReactDOM.createPortal(
     <ModalOverlay>
       <ModalDiv ref={newRef}>
-        <H2>Change personal data</H2>
+        <H2>{t('Change personal data')}</H2>
         {width < breakpoint ? (
           <>
             <TabletDiv>
               <TabletContainer>
                 <Avatar src={data.avatar} alt="User avatar" />
                 <Name>{`${data.firstName} ${data.lastName}`}</Name>
-                <StatusP>Active</StatusP>
-                <DateP>{`Last sign in: ${data.lastLogin.slice(0, 10)}`}</DateP>
-                <DateP>{`Created: ${data.createdAt.slice(0, 10)}`}</DateP>
+                <StatusP>{t('Active')}</StatusP>
+                <DateP>{`${t('Last sign in')}: ${data.lastLogin.slice(
+                  0,
+                  10
+                )}`}</DateP>
+                <DateP>{`${t('Created')}: ${data.createdAt.slice(
+                  0,
+                  10
+                )}`}</DateP>
               </TabletContainer>
               <div>
-                <H3>Account Data</H3>
-                <H4>Personal Information</H4>
+                <H3>{t('Account Data')}</H3>
+                <H4>{t('Personal information')}</H4>
                 <DescriptionP>{data.description}</DescriptionP>
               </div>
             </TabletDiv>
@@ -96,7 +104,7 @@ export const UserModal = ({ onClose, data }) => {
               <InputsList>
                 <InputsItem>
                   <Label>
-                    First Name
+                    {t('First Name')}
                     <br />
                     <Input
                       type="text"
@@ -107,7 +115,7 @@ export const UserModal = ({ onClose, data }) => {
                 </InputsItem>
                 <InputsItem>
                   <Label>
-                    Last Name
+                    {t('Last Name')}
                     <br />
                     <Input
                       type="text"
@@ -118,7 +126,7 @@ export const UserModal = ({ onClose, data }) => {
                 </InputsItem>
                 <InputsItem>
                   <Label>
-                    Gender
+                    {t('Gender')}
                     <br />
                     <Input
                       type="text"
@@ -129,7 +137,7 @@ export const UserModal = ({ onClose, data }) => {
                 </InputsItem>
                 <InputsItem>
                   <Label>
-                    Birthday
+                    {t('Birthday')}
                     <br />
                     <Input
                       type="text"
@@ -140,14 +148,14 @@ export const UserModal = ({ onClose, data }) => {
                 </InputsItem>
                 <InputsItem>
                   <Label>
-                    Phone
+                    {t('Phone')}
                     <br />
                     <Input type="text" name="phone" defaultValue={data.phone} />
                   </Label>
                 </InputsItem>
                 <InputsItem>
                   <Label>
-                    Email
+                    {t('Email')}
                     <br />
                     <Input
                       type="email"
@@ -158,7 +166,7 @@ export const UserModal = ({ onClose, data }) => {
                 </InputsItem>
               </InputsList>
               <ButtonsContainer>
-                <SubmitButton type="submit">Save</SubmitButton>
+                <SubmitButton type="submit">{t('Save')}</SubmitButton>
                 <CancelButton
                   type="button"
                   onClick={e => {
@@ -166,7 +174,7 @@ export const UserModal = ({ onClose, data }) => {
                     onClose();
                   }}
                 >
-                  Cancel
+                  {t('Cancel')}
                 </CancelButton>
               </ButtonsContainer>
             </form>
@@ -176,22 +184,25 @@ export const UserModal = ({ onClose, data }) => {
             <TabletContainer>
               <Avatar src={data.avatar} alt="User avatar" />
               <Name>{`${data.firstName} ${data.lastName}`}</Name>
-              <StatusP>Active</StatusP>
-              <DateP>{`Last sign in: ${data.lastLogin.slice(0, 10)}`}</DateP>
-              <DateP>{`Created: ${data.createdAt.slice(0, 10)}`}</DateP>
+              <StatusP>{t('Active')}</StatusP>
+              <DateP>{`${t('Last sign in')}: ${data.lastLogin.slice(
+                0,
+                10
+              )}`}</DateP>
+              <DateP>{`${t('Created')}: ${data.createdAt.slice(0, 10)}`}</DateP>
             </TabletContainer>
             <div>
-              <H3>Account Data</H3>
+              <H3>{t('Account Data')}</H3>
               <AccountData>
                 <InfoDiv>
-                  <H4>Personal Information</H4>
+                  <H4>{t('Personal information')}</H4>
                   <DescriptionP>{data.description}</DescriptionP>
                 </InfoDiv>
                 <form onSubmit={handleSubmit}>
                   <InputsList>
                     <InputsItem>
                       <Label>
-                        First Name
+                        {t('First Name')}
                         <br />
                         <Input
                           type="text"
@@ -202,7 +213,7 @@ export const UserModal = ({ onClose, data }) => {
                     </InputsItem>
                     <InputsItem>
                       <Label>
-                        Last Name
+                        {t('Last Name')}
                         <br />
                         <Input
                           type="text"
@@ -213,7 +224,7 @@ export const UserModal = ({ onClose, data }) => {
                     </InputsItem>
                     <InputsItem>
                       <Label>
-                        Gender
+                        {t('Gender')}
                         <br />
                         <Input
                           type="text"
@@ -224,7 +235,7 @@ export const UserModal = ({ onClose, data }) => {
                     </InputsItem>
                     <InputsItem>
                       <Label>
-                        Birthday
+                        {t('Birthday')}
                         <br />
                         <Input
                           type="text"
@@ -235,7 +246,7 @@ export const UserModal = ({ onClose, data }) => {
                     </InputsItem>
                     <InputsItem>
                       <Label>
-                        Phone
+                        {t('Phone')}
                         <br />
                         <Input
                           type="text"
@@ -246,7 +257,7 @@ export const UserModal = ({ onClose, data }) => {
                     </InputsItem>
                     <InputsItem>
                       <Label>
-                        Email
+                        {t('Email')}
                         <br />
                         <Input
                           type="email"
@@ -257,7 +268,7 @@ export const UserModal = ({ onClose, data }) => {
                     </InputsItem>
                   </InputsList>
                   <ButtonsContainer>
-                    <SubmitButton type="submit">Save</SubmitButton>
+                    <SubmitButton type="submit">{t('Save')}</SubmitButton>
                     <CancelButton
                       type="button"
                       onClick={e => {
@@ -265,7 +276,7 @@ export const UserModal = ({ onClose, data }) => {
                         onClose();
                       }}
                     >
-                      Cancel
+                      {t('Cancel')}
                     </CancelButton>
                   </ButtonsContainer>
                 </form>

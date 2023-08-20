@@ -16,8 +16,11 @@ import {
 } from 'redux/selectors';
 import { changeUsersCurrPage } from 'redux/usersSlice';
 import { changeGroupsCurrPage } from 'redux/groupsSlice';
+import { useTranslation } from 'react-i18next';
 
 export const Pagination = ({ isUsers }) => {
+  const { t } = useTranslation();
+
   const groupsPerPage = useSelector(selectGroupsPerPage);
   const groupsCurrPage = useSelector(selectGroupsCurrPage);
   const usersPerPage = useSelector(selectUsersPerPage);
@@ -57,14 +60,14 @@ export const Pagination = ({ isUsers }) => {
       {isUsers ? (
         <PagesP>{`${(usersCurrPage - 1) * usersPerPage + 1}-${
           usersPerPage * usersCurrPage
-        } of 32 users`}</PagesP>
+        } ${t('of')} 32 ${t('users')}`}</PagesP>
       ) : (
         <PagesP>{`${(groupsCurrPage - 1) * groupsPerPage + 1}-${
           groupsPerPage * groupsCurrPage
-        } of 14 groups`}</PagesP>
+        } ${t('of')} 14 ${t('users')}`}</PagesP>
       )}
       <FormDiv>
-        <InfoP>You are on page</InfoP>
+        <InfoP>{t('You are on page')}</InfoP>
         <form>
           <PageInput
             id="pagination-form"
